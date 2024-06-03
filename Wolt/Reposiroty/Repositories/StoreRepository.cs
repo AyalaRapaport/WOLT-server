@@ -29,24 +29,26 @@ namespace Reposiroty.Repositories
 
         public async Task<List<Store>> GetAll()
         {
-            return await this._context.Stores.ToListAsync();
+            return await this._context.Stores.Include(r=>r.ProductList).ToListAsync();
         }
 
-        public async Task Post(Store item)
+        public async Task<Store> Post(Store item)
         {
             await this._context.Stores.AddAsync(item);
             await this._context.save();
+            return item;
         }
 
-        public async Task Put(int id, Store item)
+        public async Task<Store> Put(int id, Store item)
         {
             var store =await Get(id);
             store.Name = item.Name;
             store.XCoordinate = item.XCoordinate;
             store.YCoordinate = item.YCoordinate;
             store.Password = item.Password;
+            store.UrlImage=item.UrlImage;
             this._context.save();
-
+            return store;   
         }
     }
 }

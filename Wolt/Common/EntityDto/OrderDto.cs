@@ -13,11 +13,13 @@ namespace Common.EntityDto
         public int? Id { get; set; }
         public double XCoordinate { get; set; }
         public double YCoordinate { get; set; }
-        public string OrderingName { get; set; }
         public int StoreId { get; set; }
+        public int UserId { get; set; }
         public DateTime OrderDate { get; set; }
         public bool IsTaken { get; set; }
         public bool IsDone { get; set; }
-
+        public StoreDto ? Store { get; set; }
+        public UserDto? User { get; set; }
+        public  List<int>? ProductsIds { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
 using Common.EntityDto;
 using Microsoft.Extensions.DependencyInjection;
 using Reposiroty.Repositories;

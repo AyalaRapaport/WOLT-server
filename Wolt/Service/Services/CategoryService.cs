@@ -38,14 +38,14 @@ namespace Service.Services
 
         }
 
-        public async Task Post(CategoryDto item)
+        public async Task<CategoryDto> Post(CategoryDto item)
         {
-           await this._repository.Post(mapper.Map<Category>(item));
+         return mapper.Map<CategoryDto> ( await this._repository.Post(mapper.Map<Category>(item)));
         }
 
-        public async Task Put(int id, CategoryDto item)
+        public async Task<CategoryDto> Put(int id, CategoryDto item)
         {
-          await  _repository.Put(id, mapper.Map<Category>(item));
+            return mapper.Map<CategoryDto>(await  _repository.Put(id, mapper.Map<Category>(item)));
         }
     }
 }

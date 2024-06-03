@@ -13,6 +13,7 @@ namespace Reposiroty.Entity
         public double XCoordinate { get; set; }
         public double YCoordinate { get; set; }
         public string Password { get; set; }
-        public virtual ICollection<Product> ProductList{ get; set; }
+        public string? UrlImage { get; set; }
+        public virtual ICollection<Product>? ProductList{ get; set; }
     }
 }

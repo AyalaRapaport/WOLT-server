@@ -22,9 +22,14 @@ namespace Wolt.Controllers
         }
         // GET: api/<CategoryController>
         [HttpGet]
-        public async Task< List<CategoryDto>> Get()
+        public async Task<List<CategoryDto>> Get()
         {
-            return await service.GetAll();
+            var categories = await service.GetAll();
+            foreach (var c in categories)
+            {
+                c.UrlImage = GetImage(c.UrlImage);
+            }
+            return categories;
         }
 
         // GET api/<CategoryController>/5
@@ -46,9 +51,8 @@ namespace Wolt.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public async Task Post([FromForm] CategoryDto categoryDto)
+        public async Task<ActionResult> Post([FromForm] CategoryDto categoryDto)
         {
-
             var myPath = Path.Combine(Environment.CurrentDirectory + "/Images/" + categoryDto.Image.FileName);
             Console.WriteLine("myPath: " + myPath);
 
@@ -58,12 +62,11 @@ namespace Wolt.Controllers
                 fs.Close();
             }
             categoryDto.UrlImage = categoryDto.Image.FileName;
-            await service.Post(categoryDto);
+            return Ok(await service.Post(categoryDto));
         }
 
-        // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromForm] CategoryDto categoryDto)
+        public async Task<IActionResult> Put(int id, [FromForm] CategoryDto categoryDto)
         {
             var myPath = Path.Combine(Environment.CurrentDirectory + "/Images/" + categoryDto.Image.FileName);
             Console.WriteLine("myPath: " + myPath);
@@ -74,7 +77,7 @@ namespace Wolt.Controllers
                 fs.Close();
             }
             categoryDto.UrlImage = categoryDto.Image.FileName;
-            await service.Put(id, categoryDto);
+           return Ok (await service.Put(id, categoryDto));
         }
 
         // DELETE api/<CategoryController>/5

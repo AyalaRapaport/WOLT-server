@@ -19,7 +19,7 @@ namespace Reposiroty.Repositories
 
         public async Task Delete(int id)
         {
-         _context.Categories.Remove(await Get(id));
+            _context.Categories.Remove(await Get(id));
             await _context.save();
         }
 
@@ -33,18 +33,20 @@ namespace Reposiroty.Repositories
             return await _context.Categories.ToListAsync();
         }
 
-        public async Task Post(Category item)
+        public async Task<Category> Post(Category item)
         {
             await _context.Categories.AddAsync(item);
             await _context.save();
+            return item;
         }
 
-        public async Task Put(int id, Category item)
+        public async Task<Category> Put(int id, Category item)
         {
-           Category category = await Get(id);
+            Category category = await Get(id);
             category.Name = item.Name;
             category.UrlImage = item.UrlImage;
             await _context.save();
+            return item;
         }
     }
 }

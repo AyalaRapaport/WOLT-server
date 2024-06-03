@@ -21,7 +21,9 @@ namespace DataContext
         {
             //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=wolt3;Integrated Security=True");
 
-            optionsBuilder.UseSqlServer("Server=WIN-ADMIN1\\MSSQLSERVEROK;Database=wolt1;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer("Server=WIN-ADMIN1\\MSSQLSERVEROK;Database=wolt1;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=WIN-ADMIN1\\MSSQLSERVEROK;Database=wolt2;Trusted_Connection=True;");
+
         }
     }
 }

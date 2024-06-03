@@ -23,7 +23,7 @@ namespace Service.Services
 
         public async Task Delete(int id)
         {
-           await this._repository.Delete(id);
+          await this._repository.Delete(id);
         }
 
         public async Task<CourierDto> Get(int id)
@@ -38,14 +38,14 @@ namespace Service.Services
 
         }
 
-        public async Task Post(CourierDto item)
+        public async Task<CourierDto> Post(CourierDto item)
         {
-           await this._repository.Post(mapper.Map <Courier>(item));
+            return mapper.Map<CourierDto>(await this._repository.Post(mapper.Map <Courier>(item)));
         }
 
-        public async Task Put(int id, CourierDto item)
+        public async Task<CourierDto> Put(int id, CourierDto item)
         {
-          await  _repository.Put(id, mapper.Map<Courier>(item));
+            return mapper.Map<CourierDto>(await  _repository.Put(id, mapper.Map<Courier>(item)));
         }
     }
 }

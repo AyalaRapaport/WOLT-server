@@ -24,14 +24,26 @@ namespace Wolt.Controllers
         [HttpGet]
         public async Task<List<ProductDto>> Get()
         {
-            return await service.GetAll();
+            var products = await service.GetAll();
+            foreach (var p in products)
+            {
+                p.UrlImage = GetImage(p.UrlImage);
+
+            }
+            return products;
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
         public async Task<ProductDto> Get(int id)
         {
-            return await service.Get(id);
+            var product = await service.Get(id);
+           
+                product.UrlImage = GetImage(product.UrlImage);
+
+            return product;
+
+            //return await service.Get(id);
         }
 
         [HttpGet("getImage/{ImageUrl}")]
@@ -46,41 +58,52 @@ namespace Wolt.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public async Task Post([FromForm] ProductDto productDto)
+        public async Task<ActionResult> Post([FromForm] ProductDto productDto)
         {
-
-            var myPath = Path.Combine(Environment.CurrentDirectory + "/Images/" + productDto.Image.FileName);
-
-            using (FileStream fs = new FileStream(myPath, FileMode.Create))
+            try
             {
-                productDto.Image.CopyTo(fs);
-                fs.Close();
+                var imagePath = Path.Combine(Environment.CurrentDirectory, "Images", productDto.Image.FileName);
+
+                using (FileStream fs = new FileStream(imagePath, FileMode.Create))
+                {
+                    await productDto.Image.CopyToAsync(fs);
+                }
+
+                productDto.UrlImage = productDto.Image.FileName;
+                productDto.UrlImage = GetImage(productDto.UrlImage);
+
+
+                return Ok(await service.Post(productDto));
             }
-            productDto.UrlImage = productDto.Image.FileName;
-            await service.Post(productDto);
-
-            //return Ok(productDto);
-
-            //catch (Exception ex)
-            //{
-            //    return NotFound();
-            //}
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
         }
+
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromForm] ProductDto value)
+        public async Task<IActionResult> Put(int id, [FromForm] ProductDto value)
         {
-            var myPath = Path.Combine(Environment.CurrentDirectory + "/Images/" + value.Image.FileName);
-            Console.WriteLine("myPath: " + myPath);
-
-            using (FileStream fs = new FileStream(myPath, FileMode.Create))
+            try
             {
-                value.Image.CopyTo(fs);
-                fs.Close();
+                var myPath = Path.Combine(Environment.CurrentDirectory + "/Images/" + value.Image.FileName);
+                Console.WriteLine("myPath: " + myPath);
+
+                using (FileStream fs = new FileStream(myPath, FileMode.Create))
+                {
+                    value.Image.CopyTo(fs);
+                    fs.Close();
+                }
+                value.UrlImage = value.Image.FileName;
+                await service.Put(id, value);
+                return Ok(value);
             }
-            value.UrlImage = value.Image.FileName;
-            await service.Put(id, value);
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
         }
 
         // DELETE api/<CategoryController>/5

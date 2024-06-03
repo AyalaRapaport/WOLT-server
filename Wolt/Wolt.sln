@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolt", "Wolt\Wolt.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reposiroty", "Reposiroty\Reposiroty.csproj", "{2BE90424-863B-4D9A-9A4C-298958D6AE3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{B45446EE-7815-4A3A-B7D5-0ECAC5B5D7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{B45446EE-7815-4A3A-B7D5-0ECAC5B5D7D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AB5C90E6-F841-4B7C-8F35-87CFB525E441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{AB5C90E6-F841-4B7C-8F35-87CFB525E441}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataContext", "DbContext\DataContext.csproj", "{67C0E229-CD4E-423C-83B8-39F0055B6823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataContext", "DbContext\DataContext.csproj", "{67C0E229-CD4E-423C-83B8-39F0055B6823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

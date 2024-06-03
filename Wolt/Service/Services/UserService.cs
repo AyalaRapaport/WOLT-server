@@ -23,7 +23,7 @@ namespace Service.Services
 
         public async Task Delete(int id)
         {
-            await this._repository.Delete(id);
+           await this._repository.Delete(id);
         }
 
         public async Task<UserDto> Get(int id)
@@ -31,6 +31,7 @@ namespace Service.Services
             return mapper.Map<UserDto>(await _repository.Get(id));
 
         }
+ 
 
         public async Task<List<UserDto>> GetAll()
         {
@@ -38,14 +39,14 @@ namespace Service.Services
 
         }
 
-        public async Task Post(UserDto item)
+        public async Task<UserDto> Post(UserDto item)
         {
-            await this._repository.Post(mapper.Map<User>(item));
+            return mapper.Map<UserDto>(await this._repository.Post(mapper.Map<User>(item)));
         }
 
-        public async Task Put(int id, UserDto item)
+        public async Task<UserDto> Put(int id, UserDto item)
         {
-            await _repository.Put(id, mapper.Map<User>(item));
+            return mapper.Map<UserDto>(await _repository.Put(id, mapper.Map<User>(item)));
         }
     }
 }

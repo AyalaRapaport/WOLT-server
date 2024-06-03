@@ -32,13 +32,14 @@ namespace Reposiroty.Repositories
             return await this._context.Couriers.ToListAsync();
         }
 
-        public async Task Post(Courier item)
+        public async Task<Courier> Post(Courier item)
         {
             await this._context.Couriers.AddAsync(item);
             await this._context.save();
+            return item;
         }
 
-        public async Task Put(int id, Courier item)
+        public async Task<Courier> Put(int id, Courier item)
         {
             var courier = await Get(id);
             courier.IdCourier = item.IdCourier;
@@ -48,7 +49,9 @@ namespace Reposiroty.Repositories
             courier.IsActive = item.IsActive;
             courier.Email = item.Email;
             courier.Phone = item.Phone;
+            courier.Password=item.Password;
             await _context.save();
+            return courier;
         }
     }
 }

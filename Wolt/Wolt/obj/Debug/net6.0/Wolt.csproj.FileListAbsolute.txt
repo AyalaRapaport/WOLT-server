@@ -449,3 +449,10 @@ C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\obj\Debug\net6.0\refint\Wolt.dll
 C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\obj\Debug\net6.0\Wolt.pdb
 C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\obj\Debug\net6.0\Wolt.genruntimeconfig.cache
 C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\obj\Debug\net6.0\ref\Wolt.dll
+C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\bin\Debug\net6.0\GoogleMaps.Net.dll
+C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\bin\Debug\net6.0\MailKit.dll
+C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\bin\Debug\net6.0\NETCore.MailKit.dll
+C:\Users\Yoni\Desktop\GitHub\c-\Wolt\Wolt\bin\Debug\net6.0\BouncyCastle.Crypto.dll

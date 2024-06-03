@@ -27,6 +27,11 @@ namespace Wolt.Controllers
             return await service.Get(id);
         }
 
+        //public async Task<UserDto> GetById(int id)
+        //{
+        //    return await service.Get(id);
+        //}
+
         [HttpPost]
         public async Task Post([FromBody] UserDto userDto)
         {

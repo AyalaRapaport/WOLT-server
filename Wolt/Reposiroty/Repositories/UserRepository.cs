@@ -26,7 +26,7 @@ namespace Reposiroty.Repositories
         public async Task<User> Get(int id)
         {
             //return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            return await _context.Users.FirstOrDefaultAsync(x => x.IdUser == id.ToString());
+            return await _context.Users.FirstOrDefaultAsync(x => x.IdUser == id.ToString()||x.IdUser== ("0" + id.ToString()));
         }
 
         public async Task<List<User>> GetAll()
@@ -34,26 +34,24 @@ namespace Reposiroty.Repositories
             return await _context.Users.ToListAsync();
         }
 
-        public async Task Post(User item)
+        public async Task<User> Post(User item)
         {
             await _context.Users.AddAsync(item);
             await _context.save();
+            return item;
         }
 
-        public async Task Put(int id, User item)
+        public async Task<User> Put(int id, User item)
         {
             User user = await Get(id);
-            if(item.IdUser!="string")
             user.IdUser= item.IdUser;
-            if(item.Name!="string")
             user.Name = item.Name;
-            if(item.Email!="string") 
             user.Email = item.Email;
-            if(item.XCoordinate!=0)
             user.XCoordinate= item.XCoordinate; 
-            if(item.YCoordinate!=0)
-            user.YCoordinate= item.YCoordinate; 
+            user.YCoordinate= item.YCoordinate;
+            user.Password = item.Password;
             await _context.save();
+            return user;    
         }
     }
 }

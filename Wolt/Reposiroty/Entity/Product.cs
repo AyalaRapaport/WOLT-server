@@ -15,11 +15,13 @@ namespace Reposiroty.Entity
         public string Description { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public virtual Category ? Category { get; set; }
         public int? StoreId { get; set; }
         [ForeignKey("StoreId")]
-        public virtual Store Store { get; set; }
+        public virtual Store ? Store { get; set; }
         public string UrlImage { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+
 
     }
 }

@@ -32,13 +32,14 @@ namespace Reposiroty.Repositories
             return await this._context.Products.ToListAsync();
         }
 
-        public async Task Post(Product item)
+        public async Task<Product> Post(Product item)
         {
             await this._context.Products.AddAsync(item);
             await this._context.save();
+            return item;
         }
 
-        public async Task Put(int id, Product item)
+        public async Task<Product> Put(int id, Product item)
         {
             var product = await Get(id);
             product.Name = item.Name;
@@ -48,6 +49,7 @@ namespace Reposiroty.Repositories
             product.Description = item.Description;
             product.UrlImage = item.UrlImage;
             await this._context.save();
+            return product; 
         }
     }
 }

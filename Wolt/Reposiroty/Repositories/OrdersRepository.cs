@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Reposiroty.Repositories
 {
-    class OrdersRepository:IRepository<Order>
+    class OrdersRepository : IRepository<Order>
     {
         private readonly IContext _context;
         public OrdersRepository(IContext context)
         {
-            this._context = context;    
+            this._context = context;
         }
-        
+
 
         public async Task Delete(int id)
         {
@@ -24,30 +24,38 @@ namespace Reposiroty.Repositories
             await _context.save();
         }
 
-        public async Task<List<Order>>GetAll()
+        public async Task<List<Order>> GetAll()
         {
-            return await this._context.Orders.ToListAsync();
+            return await this._context.Orders
+                .Include(order => order.Store)
+                .Include(order => order.User)
+                .ToListAsync();
         }
 
         public async Task<Order> Get(int id)
         {
-            return await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);    
+            return await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task Post(Order item)
+        public async Task<Order> Post(Order item)
         {
-          await  this._context.Orders.AddAsync(item);
-           await this._context.save();
+            await this._context.Orders.AddAsync(item);
+            await this._context.save();
+            return item;
         }
 
-        public async Task Put(int id, Order entity)
+        public async Task<Order> Put(int id, Order entity)
         {
-            var order=await Get(id);
-            order.OrderingName = entity.OrderingName;
-            order.XCoordinate= entity.XCoordinate;
-            order.YCoordinate= entity.YCoordinate;
+            var order = await Get(id);
+            order.UserId = entity.UserId;
+            order.XCoordinate = entity.XCoordinate;
+            order.YCoordinate = entity.YCoordinate;
             order.StoreId = entity.StoreId;
+            order.IsTaken = entity.IsTaken;   
+            order.OrderDate = entity.OrderDate; 
+            order.IsDone=entity.IsDone; 
             this._context.save();
+            return entity;
         }
     }
 }

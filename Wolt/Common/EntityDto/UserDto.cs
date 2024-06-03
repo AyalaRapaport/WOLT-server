@@ -15,5 +15,7 @@ namespace Common.EntityDto
         public string Email { get; set; }
         public double XCoordinate { get; set; }
         public double YCoordinate { get; set; }
+        public string Password { get; set; }
+
     }
 }
